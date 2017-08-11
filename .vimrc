@@ -45,6 +45,8 @@ Plugin 'austinwiltshire/nerdtree'
 " Solarized for vim
 Plugin 'altercation/vim-colors-solarized'
 
+Plugin 'ludovicchabant/vim-gutentags'
+
 call vundle#end()	
 
 syntax on
