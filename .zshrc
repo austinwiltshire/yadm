@@ -83,3 +83,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# Vi mode
+bindkey -v
+
+# Make backspace key behave like I think it ought to in vim mode
+bindkey "^?" backward-delete-char
