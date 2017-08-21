@@ -51,7 +51,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git git-flow-avh)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,3 +89,6 @@ bindkey -v
 
 # Make backspace key behave like I think it ought to in vim mode
 bindkey "^?" backward-delete-char
+
+# add miniconda to path
+export PATH="$HOME/miniconda/bin:$PATH"
