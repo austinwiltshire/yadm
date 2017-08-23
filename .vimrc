@@ -45,9 +45,20 @@ Plugin 'austinwiltshire/nerdtree'
 " Solarized for vim
 Plugin 'altercation/vim-colors-solarized'
 
+" Tag management
 Plugin 'ludovicchabant/vim-gutentags'
 
+
 call vundle#end()	
+
+" ctrl p speedup
+" use a cache for ctrlp
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
+" use ag instead of vim grep
+if executable('ag')
+	  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 syntax on
 filetype plugin indent on
