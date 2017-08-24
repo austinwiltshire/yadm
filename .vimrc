@@ -2,7 +2,7 @@ set nocompatible              " be iMproved
 filetype off                  " required!
 
 " not sure what this does
-runtime macros/matchit.vim
+
 
 " means f5 can get us in and out of paste mode
 set pastetoggle=<f5>
@@ -15,8 +15,11 @@ call vundle#begin()
 " package manager
 Plugin 'gmarik/vundle' 
 
+" Turning off for now. Neomake is asynchronous so I use that instead
 " syntax checker
-Plugin 'Syntastic'
+"Plugin 'Syntastic'
+"
+Plugin 'neomake/neomake'
 
 " shows what has been added, removed or modified in git
 Plugin 'vim-gitgutter'
@@ -48,8 +51,27 @@ Plugin 'altercation/vim-colors-solarized'
 " Tag management
 Plugin 'ludovicchabant/vim-gutentags'
 
+" Project/directory local vimrc settings autoloaded
+Plugin 'embear/vim-localvimrc'
 
 call vundle#end()	
+
+" neomake config, run on save
+autocmd! BufWritePost * Neomake
+
+" neomake - manual defaults for c++ linters so i can add include directories
+let g:neomake_cpp_enabled_makers = ['gcc']
+let g:neomake_cpp_gcc_maker = {
+   \ 'exe': 'g++',
+   \ 'args': ['-fsyntax-only',
+            \ '-std=c++1z',
+            \ '-Wall',
+            \ '-Wextra',
+            \ '-pedantic'],
+\ }
+
+" load local vimrc's automatically
+let g:localvimrc_ask = 0
 
 " ctrl p speedup
 " use a cache for ctrlp
@@ -68,22 +90,22 @@ set hlsearch
 " allows opening new buffers without saving/undoing current
 set hidden
 
-" Syntastic flags
-" let g:syntastic_cpp_compiler = 'clang++' " Switch to clang rather than gcc
-let g:syntastic_cpp_check_header = 1  " check .h and .hpp files
-let g:syntastic_cpp_config = '~/.syntastic_cpp_config'
+"" Syntastic flags
+"" let g:syntastic_cpp_compiler = 'clang++' " Switch to clang rather than gcc
+"let g:syntastic_cpp_check_header = 1  " check .h and .hpp files
+"let g:syntastic_cpp_config = '~/.syntastic_cpp_config'
 
-" uncomment this to run all checkers. so long as its commented we only run
-" them in order
-" let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_id_checkers = 1
+"" uncomment this to run all checkers. so long as its commented we only run
+"" them in order
+"" let g:syntastic_aggregate_errors = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_id_checkers = 1
 
-" this removes errors from the result set in files we include. remove this
-" line if you're trying to debut why things aren't compiling right
-let g:syntastic_cpp_remove_include_errors = 1
-" boost for sifi projects
-" let g:syntastic_cpp_include_dirs = ["/Users/austinwiltshire/projects/deps/boost-1.55.0/include"]
+"" this removes errors from the result set in files we include. remove this
+"" line if you're trying to debut why things aren't compiling right
+"let g:syntastic_cpp_remove_include_errors = 1
+"" boost for sifi projects
+"" let g:syntastic_cpp_include_dirs = ["/Users/austinwiltshire/projects/deps/boost-1.55.0/include"]
 
 if has("autocmd")
 	autocmd FileType c,cpp set autoindent shiftwidth=4 softtabstop=4 tabstop=4 expandtab
