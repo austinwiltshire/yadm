@@ -92,3 +92,6 @@ bindkey "^?" backward-delete-char
 
 # add miniconda to path
 export PATH="$HOME/miniconda/bin:$PATH"
+
+# add ccache wrappers around normal cc calls for faster compiles
+export PATH="/usr/lib/ccache:$PATH"
