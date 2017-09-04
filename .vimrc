@@ -28,7 +28,7 @@ Plugin 'vim-gitgutter'
 Plugin 'tpope/vim-sensible'
 
 " you complete me omni completion
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " ctrl-p fuzzy finder
 Plugin 'kien/ctrlp.vim'
@@ -55,6 +55,13 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'embear/vim-localvimrc'
 
 call vundle#end()	
+
+" turn off initial gutentags ctags run
+" this competes with ycm for processor time
+" just manually run using Gutentags! the first time
+" you open new project with no tags file, or wait
+" until you save for a full regeneration
+let g:gutentags_generate_on_new = 0
 
 " neomake config, run on save
 autocmd! BufWritePost * Neomake
@@ -195,27 +202,26 @@ colorscheme solarized
 set cursorline
 set cursorcolumn
 
-" youcomplete me
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-
 " should jump between declaration and definition
 " does not appear to work
 " nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
+" testing
 " ycm will read in tag files.
 " must run ctags --fields=+l for the right format
-let g:ycm_collect_identifiers_from_tags_files = 1
+" turning this on uses a shit ton of memory, so  just leave it off
+" let g:ycm_collect_identifiers_from_tags_files = 1
 
 " adds syntax keywords to ycm
 let g:ycm_seed_identifiers_with_syntax = 1
 
 " adds completion help to the preview window at the top
-let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_add_preview_to_completeopt = 1
 
 " remove silly config check for ycm
 let g:ycm_confirm_extra_conf = 0
 
-let g:ycm_max_diagnostics_to_display = 1000
+" let g:ycm_max_diagnostics_to_display = 1000
 
 " turn off diagnostics for now
 let g:ycm_show_diagnostics_ui = 0
@@ -250,4 +256,4 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
-
+set path=$PWD/**
