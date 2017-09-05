@@ -56,6 +56,13 @@ Plugin 'embear/vim-localvimrc'
 
 call vundle#end()	
 
+" turn off initial gutentags ctags run
+" this competes with ycm for processor time
+" just manually run using Gutentags! the first time
+" you open new project with no tags file, or wait
+" until you save for a full regeneration
+let g:gutentags_generate_on_new = 0
+
 " neomake config, run on save
 autocmd! BufWritePost * Neomake
 
@@ -195,15 +202,14 @@ colorscheme solarized
 set cursorline
 set cursorcolumn
 
-" youcomplete me
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-
 " should jump between declaration and definition
 " does not appear to work
 " nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
+" testing
 " ycm will read in tag files.
 " must run ctags --fields=+l for the right format
+" turning this on uses a shit ton of memory, so  just leave it off
 " let g:ycm_collect_identifiers_from_tags_files = 1
 
 " adds syntax keywords to ycm
@@ -250,4 +256,4 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
-
+set path=$PWD/**
