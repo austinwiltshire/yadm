@@ -92,3 +92,5 @@ bindkey "^?" backward-delete-char
 
 # add miniconda to path
 export PATH="$HOME/miniconda/bin:$PATH"
+# cache's gcc/g++ ahead of others so it gets found
+export PATH=/usr/lib/ccache:$PATH

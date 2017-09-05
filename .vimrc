@@ -28,7 +28,7 @@ Plugin 'vim-gitgutter'
 Plugin 'tpope/vim-sensible'
 
 " you complete me omni completion
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " ctrl-p fuzzy finder
 Plugin 'kien/ctrlp.vim'
@@ -204,18 +204,18 @@ set cursorcolumn
 
 " ycm will read in tag files.
 " must run ctags --fields=+l for the right format
-let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
 
 " adds syntax keywords to ycm
 let g:ycm_seed_identifiers_with_syntax = 1
 
 " adds completion help to the preview window at the top
-let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_add_preview_to_completeopt = 1
 
 " remove silly config check for ycm
 let g:ycm_confirm_extra_conf = 0
 
-let g:ycm_max_diagnostics_to_display = 1000
+" let g:ycm_max_diagnostics_to_display = 1000
 
 " turn off diagnostics for now
 let g:ycm_show_diagnostics_ui = 0
