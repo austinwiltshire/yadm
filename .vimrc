@@ -54,7 +54,48 @@ Plugin 'ludovicchabant/vim-gutentags'
 " Project/directory local vimrc settings autoloaded
 Plugin 'embear/vim-localvimrc'
 
+" Tmux integration for navigation
+Plugin 'christoomey/vim-tmux-navigator'
+
+" Airline for a nice status line. Switching from powerline since it may be
+" easier to integrate neomake?
+Plugin 'vim-airline/vim-airline'
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+"
+" " Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
 call vundle#end()	
+
+" integrate airline with neomake and ycm
+let g:airline#extensions#neomake#enabled = 1
+let g:airline#extensions#neomake#error_symbol = 'E:'
+let g:airline#extensions#neomake#warning_symbol = 'W:'
+
+" lint/static analysis/compile errors and warnings are upper case
+" live found ycm errors and warnings are lower cased
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#ycm#error_symbol = 'e:'
+let g:airline#extensions#ycm#warning_symbol = 'w:'
+
+" ultisnips
+" makes utilsnips expand on carraige return but keeps carraige return working
+" otherwise
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
+
+
 
 " turn off initial gutentags ctags run
 " this competes with ycm for processor time
@@ -116,7 +157,7 @@ set hidden
 
 if has("autocmd")
 	autocmd FileType c,cpp set autoindent shiftwidth=4 softtabstop=4 tabstop=4 expandtab
-        autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+    autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 	autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 	autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
@@ -146,12 +187,22 @@ set nu
 nnoremap <Leader>l :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
 
 " quick actions to move through the location list
-nnoremap <Leader>N :lnext<CR>
-nnoremap <Leader>P :lprev<CR>
+nnoremap <Leader>n :lnext<CR>
+nnoremap <Leader>p :lprev<CR>
+
+" open the location list when neomake has shit
+" let g:neomake_open_list = 2
+
+" run one linter at a time to get all the errors in order.
+let g:neomake_serialize = 1
+
+" quick actions to open and close
+nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>lc :lclose<CR>
 
 " and the same for the quick fix list
-noremap <Leader>n :cn<CR>
-noremap <Leader>p :cp<CR>
+noremap <Leader>N :cn<CR>
+noremap <Leader>P :cp<CR>
 
 " turn of highlight on return
 nnoremap <CR> :nohlsearch<CR>
@@ -215,16 +266,23 @@ set cursorcolumn
 " adds syntax keywords to ycm
 let g:ycm_seed_identifiers_with_syntax = 1
 
+" ycm does not add its errors to the location list
+" this overwrites neomake
+let g:ycm_always_populate_location_list = 0
+
 " adds completion help to the preview window at the top
 " let g:ycm_add_preview_to_completeopt = 1
 
 " remove silly config check for ycm
 let g:ycm_confirm_extra_conf = 0
 
+" currently not using the preview window. maybe i'll figure it out some day
+set completeopt-=preview
+
 " let g:ycm_max_diagnostics_to_display = 1000
 
 " turn off diagnostics for now
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
 
 " ctrlp tags and current buffer for tags
 let g:ctrlp_extensions = ['tag', 'buffertag']
@@ -257,3 +315,13 @@ set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
 set path=$PWD/**
+
+" vim split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" more intuitive split rules
+set splitbelow
+set splitright
