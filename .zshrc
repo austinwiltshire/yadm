@@ -94,3 +94,5 @@ bindkey "^?" backward-delete-char
 export PATH="$HOME/miniconda/bin:$PATH"
 # add ccache wrappers around normal cc calls for faster compiles
 export PATH="/usr/lib/ccache:$PATH"
+
+export DATA_BAG_PATH=${HOME}/chef-repo/data_bags

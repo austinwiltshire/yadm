@@ -67,6 +67,9 @@ Plugin 'SirVer/ultisnips'
 " " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
+" ack/ag for vim
+Plugin 'mileszs/ack.vim'
+
 call vundle#end()	
 
 " integrate airline with neomake and ycm
@@ -325,3 +328,8 @@ nnoremap <C-H> <C-W><C-H>
 " more intuitive split rules
 set splitbelow
 set splitright
+
+" use ag instead of ack
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
