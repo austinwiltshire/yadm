@@ -26,6 +26,7 @@ ZSH_THEME="agnoster"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
+#
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
@@ -93,13 +94,13 @@ bindkey -v
 # Make backspace key behave like I think it ought to in vim mode
 bindkey "^?" backward-delete-char
 
-# add miniconda to path
-export PATH="$HOME/miniconda/bin:$PATH"
+# put local bin in front of path
+export PATH="${HOME}/.local/bin:$PATH"
+
 # add ccache wrappers around normal cc calls for faster compiles
 export PATH="/usr/lib/ccache:$PATH"
 
 export DATA_BAG_PATH=${HOME}/chef-repo/data_bags
-
 
 #start in tmux automatically
 
