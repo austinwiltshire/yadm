@@ -102,5 +102,7 @@ export PATH="/usr/lib/ccache:$PATH"
 
 export DATA_BAG_PATH=${HOME}/chef-repo/data_bags
 
-#start in tmux automatically
-
+# add pyenv to path
+export PATH="~/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
