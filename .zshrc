@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/vagrant/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # autostart tmux 
 export ZSH_TMUX_AUTOSTART=true
@@ -103,6 +103,9 @@ export PATH="/usr/lib/ccache:$PATH"
 export DATA_BAG_PATH=${HOME}/chef-repo/data_bags
 
 # add pyenv to path
-export PATH="~/.pyenv/bin:$PATH"
+export PATH="${HOME}/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# get a display
+export DISPLAY=:0
