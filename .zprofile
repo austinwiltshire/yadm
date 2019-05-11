@@ -20,3 +20,6 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+# Ubuntu make installation of Ubuntu Make binary symlink
+PATH=/home/austinwiltshire/.local/share/umake/bin:$PATH
+
