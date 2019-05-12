@@ -55,7 +55,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow-avh tmux)
+plugins=(git git-flow-avh tmux fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,3 +109,6 @@ eval "$(pyenv virtualenv-init -)"
 
 # get a display
 export DISPLAY=:0
+
+# Set up fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
