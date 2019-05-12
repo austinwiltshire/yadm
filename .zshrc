@@ -55,7 +55,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow-avh tmux fzf)
+plugins=(git git-flow-avh tmux fzf zsh-autosuggestions history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,3 +112,7 @@ export DISPLAY=:0
 
 # Set up fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Set up history substring search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
