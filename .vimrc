@@ -15,9 +15,17 @@ call vundle#begin()
 " package manager
 Plugin 'gmarik/vundle' 
 
+" Speed dating used by org mode
+Plugin 'tpope/vim-speeddating'
+
+" Calendar used by org mode
+Plugin 'mattn/calendar-vim'
+
 " Turning off for now. Neomake is asynchronous so I use that instead
 " syntax checker
 "Plugin 'Syntastic'
+"
+Plugin 'jceb/vim-orgmode'
 "
 Plugin 'neomake/neomake'
 
@@ -333,3 +341,10 @@ set splitright
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
+
+" for org mode
+let g:org_todo_keywords=["TODO", "DOING", "BLOCKED", "|", "DONE", "FAILED"]
+
+" to insert a date, press F5. To insert a date in insert mode, type <C-o><F5>
+nnoremap <F5> "=strftime("%d/%m/%y %H:%M:%S (%Z)")<CR>P
+inoremap <F5> <C-R>=strftime("%d/%m/%y %H:%M:%S (%Z)")<CR>
