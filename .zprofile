@@ -23,3 +23,7 @@ fi
 # Ubuntu make installation of Ubuntu Make binary symlink
 PATH=/home/austinwiltshire/.local/share/umake/bin:$PATH
 
+
+
+# Added by Toolbox App
+export PATH="$PATH:/home/john/.local/share/JetBrains/Toolbox/scripts"
