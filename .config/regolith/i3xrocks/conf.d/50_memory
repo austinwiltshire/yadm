@@ -1,0 +1,10 @@
+[memory]
+command=/home/john/.config/regolith/i3xrocks/scripts/memory
+label=Free 
+interval=30
+
+#[memory]
+#command=~/.config/i3xrocks/conf.d/memory
+#label=SWAP
+#instance=swap
+#interval=30
